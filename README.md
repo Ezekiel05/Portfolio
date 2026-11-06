@@ -3,8 +3,7 @@
 A static site (HTML, CSS, JS). No build step, ready for GitHub Pages.
 
 ## Before you publish
-1. In `index.html`, replace `YOUR-GITHUB-USERNAME` in the footer link with your GitHub username.
-2. Optional: change the email address in `index.html` and `script.js` if you want a separate work email.
+1. Optional: change the email address in `index.html` and `script.js` if you want a separate work email.
 
 ## Deploy on GitHub Pages
 1. Create a new public repository on GitHub.

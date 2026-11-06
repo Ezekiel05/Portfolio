@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A1120">
   <title>Edrian Barandino — Web apps, automation and AI tools</title>
   <meta name="description" content="Edrian Barandino is a software developer with an electronics engineering background. I build custom web apps, automation, bots and private AI tools for small businesses and individuals.">
   <meta property="og:title" content="Edrian Barandino — Web apps, automation and AI tools">
@@ -34,7 +35,7 @@
 
   <main id="main">
     <!-- HERO -->
-    <section class="hero" id="top">
+    <section class="hero" id="top" data-reveal="hero">
       <div class="hero-copy">
         <h1>I connect the way you work to the software you need.</h1>
         <p class="lede">I'm Edrian, a software developer with an electrical and electronics engineering background. I build custom web apps, automation and private AI tools for small businesses and people with a specific problem to solve.</p>
@@ -117,41 +118,41 @@
 
     <!-- SERVICES -->
     <section class="services" id="services" aria-labelledby="services-h">
-      <div class="section-head">
+      <div class="section-head" data-reveal="head">
         <h2 id="services-h">What I can build for you</h2>
         <p>Most of my projects started as a real annoyance: a manual task, a missing tool, a device that wouldn't cooperate. That's usually where your project starts too.</p>
       </div>
 
       <ul class="svc-list">
-        <li class="svc" id="svc-web">
+        <li class="svc" data-reveal="row" id="svc-web">
           <h3>Custom web apps</h3>
           <div>
             <p>Attendance and expense systems, internal tools, dashboards and client portals. Login for multiple users, reports you can actually read, and data stored where you control it.</p>
             <p class="stack">ASP.NET MVC, .NET Core, C#, JavaScript, React, Vue.js, SQL Server, Supabase</p>
           </div>
         </li>
-        <li class="svc" id="svc-auto">
+        <li class="svc" data-reveal="row" id="svc-auto">
           <h3>Automation and bots</h3>
           <div>
             <p>Scripts and bots that take repetitive work off your plate: data entry, scheduled reports, file processing, and rule-based trading bots for MetaTrader 5.</p>
             <p class="stack">C#, JavaScript, MetaTrader 5, scheduled jobs</p>
           </div>
         </li>
-        <li class="svc" id="svc-ai">
+        <li class="svc" data-reveal="row" id="svc-ai">
           <h3>Private AI features</h3>
           <div>
             <p>Add AI to your workflow without sending sensitive data to the cloud. I run language and vision models locally to read receipts, sort documents and answer questions about your own files.</p>
             <p class="stack">Ollama, Qwen3, Qwen3-VL, local OCR pipelines</p>
           </div>
         </li>
-        <li class="svc" id="svc-mac">
+        <li class="svc" data-reveal="row" id="svc-mac">
           <h3>Mac and desktop tools</h3>
           <div>
             <p>Native utilities that make your computer do something it couldn't before, from running Windows software on a Mac to small helper apps for your team.</p>
             <p class="stack">Swift, SwiftUI, Wine, GitHub Actions</p>
           </div>
         </li>
-        <li class="svc" id="svc-hw">
+        <li class="svc" data-reveal="row" id="svc-hw">
           <h3>Software that talks to hardware</h3>
           <div>
             <p>My engineering background means I'm comfortable where code meets devices: controllers, sensors, input mapping and the troubleshooting in between.</p>
@@ -163,12 +164,12 @@
 
     <!-- WORK -->
     <section class="work" id="work" aria-labelledby="work-h">
-      <div class="section-head">
+      <div class="section-head" data-reveal="head">
         <h2 id="work-h">Things I've built</h2>
         <p>Personal projects I designed, built and still use. Each one is the kind of thing I can build for you.</p>
       </div>
 
-      <article class="case case-feature">
+      <article class="case case-feature" data-reveal="up">
         <div class="case-body">
           <p class="case-status">Web app, in active development</p>
           <h3>Resibo</h3>
@@ -200,7 +201,7 @@
       </article>
 
 
-      <article class="case case-feature case-flip">
+      <article class="case case-feature case-flip" data-reveal="up">
         <div class="badge-demo" data-reveal aria-hidden="true">
           <div class="badge">
             <span class="scanline"></span>
@@ -229,21 +230,21 @@
       </article>
 
       <div class="case-row">
-        <article class="case">
+        <article class="case" data-reveal="up">
           <p class="case-status">Automation, running on my Mac</p>
           <h3>Gold trading bot</h3>
           <p>An automated strategy that trades gold (XAU/USD) through MetaTrader 5. It runs on a Mac without a Windows virtual machine, using my own WineBridge app to host the trading platform.</p>
           <p class="stack">MetaTrader 5, Wine on macOS</p>
         </article>
 
-        <article class="case">
+        <article class="case" data-reveal="up">
           <p class="case-status">macOS app, in development</p>
           <h3>WineBridge</h3>
           <p>A native Mac app for installing and running Windows programs and Steam games. Each program lives in its own self-contained "bottle", and the Wine build is compiled automatically in the cloud.</p>
           <p class="stack">Swift, SwiftUI, Wine, D3DMetal, GitHub Actions</p>
         </article>
 
-        <article class="case">
+        <article class="case" data-reveal="up">
           <p class="case-status">Mac utility, companion to WineBridge</p>
           <h3>QRBridge</h3>
           <p>Lets physical game controllers like the 8BitDo Pro 2 work directly on a Mac for local multiplayer, routing each controller's input to the right player.</p>
@@ -252,10 +253,10 @@
       </div>
 
       <div class="more">
-        <h3 class="more-h">More on GitHub</h3>
+        <h3 class="more-h" data-reveal="wipe">More on GitHub</h3>
         <p class="more-note">Earlier projects, from full-stack business apps to Arduino hardware. Private repositories can be shown on request.</p>
         <ul class="repo-list">
-          <li class="repo">
+          <li class="repo" data-reveal="row">
             <div class="repo-main">
               <h4>ExpenseTracker</h4>
               <p>Full-stack expense tracker with user accounts, per-user categories and entries, and a protected dashboard. Runs with Docker Compose.</p>
@@ -263,7 +264,7 @@
             <p class="stack">React, Material UI, Express, SQL Server, Docker</p>
             <p class="repo-meta">2026, private</p>
           </li>
-          <li class="repo">
+          <li class="repo" data-reveal="row">
             <div class="repo-main">
               <h4>Crypto Transaction Logger</h4>
               <p>Logs crypto trades and tracks token prices and currencies on a dashboard, built as a layered .NET solution with a separate API, service and data layer.</p>
@@ -271,7 +272,7 @@
             <p class="stack">ASP.NET Core, C#, Vue.js</p>
             <p class="repo-meta">2021, private</p>
           </li>
-          <li class="repo">
+          <li class="repo" data-reveal="row">
             <div class="repo-main">
               <h4>ABot</h4>
               <p>A wellness chatbot that asks about stress, sleep and body aches and responds to what you describe. The language model is trained in Python and served to a web chat, with a C# admin app for managing it.</p>
@@ -279,7 +280,7 @@
             <p class="stack">Python, NLTK, TensorFlow, Flask, C#, IIS</p>
             <p class="repo-meta">2022, private</p>
           </li>
-          <li class="repo">
+          <li class="repo" data-reveal="row">
             <div class="repo-main">
               <h4>PropoArduino</h4>
               <p>Arduino firmware for a Bluetooth-controlled build: drive motors that move forward, back and turn, a lift mechanism, and a servo that opens and closes a lid on command.</p>
@@ -287,7 +288,7 @@
             <p class="stack">Arduino, C++, Bluetooth serial, servo and motor control</p>
             <p class="repo-meta">2021, private</p>
           </li>
-          <li class="repo">
+          <li class="repo" data-reveal="row">
             <div class="repo-main">
               <h4>Connector.Api</h4>
               <p>A .NET Core Web API starter with database migrations and a service layer, used as the base for connecting apps to account data.</p>
@@ -302,7 +303,7 @@
 
     <!-- PROCESS -->
     <section class="process" id="process" aria-labelledby="process-h">
-      <div class="section-head">
+      <div class="section-head" data-reveal="head">
         <h2 id="process-h">How a project with me goes</h2>
         <p>Small steps, working software early, and no surprises on scope.</p>
       </div>
@@ -328,7 +329,7 @@
 
     <!-- ABOUT -->
     <section class="about" id="about" aria-labelledby="about-h">
-      <div class="about-inner">
+      <div class="about-inner" data-reveal="head">
         <h2 id="about-h">An engineer who writes software</h2>
         <div class="about-text">
           <p>I trained in electrical and electronics engineering before moving into software, and I still approach every project like a circuit: understand the inputs, find where things break, and make the whole system dependable.</p>
@@ -340,10 +341,10 @@
 
     <!-- CONTACT -->
     <section class="contact" id="contact" aria-labelledby="contact-h">
-      <h2 id="contact-h">Have a problem software could fix?</h2>
+      <h2 id="contact-h" data-reveal="wipe">Have a problem software could fix?</h2>
       <p>Send me a short description of what you need. I'll reply with questions, a rough approach and an estimate, usually within a day or two.</p>
 
-      <form class="contact-form" id="contact-form" novalidate>
+      <form class="contact-form" id="contact-form" novalidate data-reveal="up">
         <div class="field">
           <label for="f-name">Your name</label>
           <input id="f-name" name="name" type="text" autocomplete="name" required>

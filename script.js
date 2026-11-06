@@ -31,16 +31,25 @@ document.querySelectorAll('[data-reveal="wipe"]').forEach((el) => {
   el.innerHTML = `<span class="wipe">${el.innerHTML}</span>`;
 });
 
-const io = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting && e.intersectionRatio >= 0.2) e.target.classList.add("in");
-      else if (!e.isIntersecting) e.target.classList.remove("in");
-    });
-  },
-  { threshold: [0, 0.2] }
-);
-document.querySelectorAll("[data-reveal]").forEach((el) => io.observe(el));
+// Start the headline as soon as the page is ready (independent of scroll detection)
+requestAnimationFrame(() => document.documentElement.classList.add("loaded"));
+
+const revealEls = document.querySelectorAll("[data-reveal]");
+if ("IntersectionObserver" in window) {
+  // "Entered" = any part is inside the middle 85% of the screen; works for any element height
+  const enter = new IntersectionObserver(
+    (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("in"); }),
+    { rootMargin: "0px 0px -15% 0px", threshold: 0 }
+  );
+  // "Left" = completely off screen, so it can replay next time
+  const leave = new IntersectionObserver(
+    (entries) => entries.forEach((e) => { if (!e.isIntersecting) e.target.classList.remove("in"); }),
+    { threshold: 0 }
+  );
+  revealEls.forEach((el) => { enter.observe(el); leave.observe(el); });
+} else {
+  revealEls.forEach((el) => el.classList.add("in"));
+}
 
 // ---- Scroll progress trace in the header
 const bar = document.querySelector(".progress");
