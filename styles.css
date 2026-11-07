@@ -637,3 +637,6 @@ body { overflow-x: clip; }
 .foot { border-top: 1px solid var(--line); }
 .progress { box-shadow: 0 0 10px var(--mask); }
 @media (max-width: 520px) { .receipt-tag { right: 16px; } }
+
+/* two smaller project cards side by side */
+@media (min-width: 961px) { .case-row { grid-template-columns: repeat(2, 1fr); } }
