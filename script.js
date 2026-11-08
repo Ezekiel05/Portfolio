@@ -2,7 +2,8 @@
 document.documentElement.classList.add("js");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-document.getElementById("year").textContent = new Date().getFullYear();
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // ---- Headline: wrap words so they can settle in one by one
 const h1 = document.querySelector(".hero h1");
@@ -55,6 +56,7 @@ if ("IntersectionObserver" in window) {
 const bar = document.querySelector(".progress");
 let ticking = false;
 function updateProgress() {
+  if (!bar) return;
   const max = document.documentElement.scrollHeight - innerHeight;
   bar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
   ticking = false;
@@ -77,7 +79,7 @@ const EMAIL = "edrianbarandino@gmail.com";
 const form = document.getElementById("contact-form");
 const errorBox = document.getElementById("form-error");
 
-form.addEventListener("submit", (e) => {
+form && form.addEventListener("submit", (e) => {
   e.preventDefault();
   const name = form.elements.name;
   const message = form.elements.message;
@@ -98,7 +100,7 @@ form.addEventListener("submit", (e) => {
   errorBox.hidden = true;
 
   const type = form.elements.type.value;
-  const subject = `Project inquiry: ${type}`;
+  const subject = `Portfolio inquiry: ${type}`;
   const body = `Hi Edrian,\n\n${message.value.trim()}\n\nThanks,\n${name.value.trim()}`;
   window.location.href =
     `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

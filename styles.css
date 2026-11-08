@@ -640,3 +640,115 @@ body { overflow-x: clip; }
 
 /* two smaller project cards side by side */
 @media (min-width: 961px) { .case-row { grid-template-columns: repeat(2, 1fr); } }
+
+/* =========================================================
+   CV home page (index.html)
+   ========================================================= */
+.hero-role {
+  display: inline-block; margin-bottom: 22px;
+  font-weight: 600; color: var(--mask);
+  text-shadow: 0 0 14px rgba(34, 240, 192, .45);
+}
+.experience, .services#skills { padding: clamp(64px, 9vw, 120px) var(--gutter); max-width: 1400px; margin: 0 auto; }
+.experience { border-top: 1px solid var(--line); }
+
+.company {
+  display: grid; grid-template-columns: minmax(200px, 1fr) 2.4fr; gap: clamp(28px, 5vw, 72px);
+  padding: clamp(28px, 4vw, 52px);
+  background: var(--surface);
+  border: 1px solid rgba(34, 240, 192, .3); border-radius: 16px;
+  box-shadow: 0 0 50px -20px rgba(34, 240, 192, .45);
+}
+.company-head h3 {
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
+  font-variation-settings: var(--wide); letter-spacing: -0.03em; margin-bottom: 6px;
+}
+.company-head p { color: var(--ink-soft); margin: 0; }
+
+/* roles sit on a vertical trace: the current role's node is lit */
+.roles { list-style: none; margin: 0; padding: 0; position: relative; }
+.role { position: relative; padding: 0 0 40px 44px; }
+.role:last-child { padding-bottom: 0; }
+.role::before {
+  content: ""; position: absolute; left: 0; top: 4px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--surface); border: 2px solid var(--mask);
+  box-shadow: 0 0 10px rgba(34, 240, 192, .6);
+}
+.role:first-child::before { background: var(--led); border-color: var(--led); box-shadow: 0 0 16px rgba(255, 212, 59, .8); }
+.role::after {
+  content: ""; position: absolute; left: 8px; top: 26px; bottom: 0; width: 2px;
+  background: var(--mask); box-shadow: 0 0 8px rgba(34, 240, 192, .8);
+}
+.role:last-child::after { display: none; }
+.role-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 20px; margin-bottom: 14px; }
+.role-head h4 { margin: 0; font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 700; }
+.role-date { margin: 0; color: var(--led); font-weight: 600; font-size: .95rem; text-shadow: 0 0 12px rgba(255, 212, 59, .3); }
+.role-points { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.role-points li { position: relative; padding-left: 22px; color: color-mix(in srgb, var(--ink) 88%, transparent); max-width: var(--measure); }
+.role-points li::before {
+  content: ""; position: absolute; left: 0; top: .68em; width: 10px; height: 2px;
+  background: var(--mask); box-shadow: 0 0 6px var(--mask);
+}
+
+.highlight {
+  display: flex; align-items: center; gap: 18px;
+  margin: 0 0 20px; padding: 16px 20px;
+  border: 1px solid rgba(255, 212, 59, .45); border-radius: 12px;
+  background: rgba(255, 212, 59, .06);
+  max-width: 560px;
+}
+.hl-num {
+  font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 900; line-height: 1;
+  font-variation-settings: var(--wide); color: var(--led);
+  text-shadow: 0 0 22px rgba(255, 212, 59, .55);
+}
+.hl-text { color: var(--ink); font-weight: 500; }
+
+@media (max-width: 900px) { .company { grid-template-columns: 1fr; } }
+
+.edu-degree { font-size: 1.35rem !important; font-weight: 700; color: var(--ink); }
+
+.contact-list {
+  list-style: none; margin: 0 0 44px; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;
+  max-width: 1100px;
+}
+.contact-list li {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 16px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface);
+}
+.cl-k { font-size: .9rem; color: var(--ink-soft); }
+.contact-list a { color: var(--mask); font-weight: 600; text-decoration: none; word-break: break-word; }
+.contact-list a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* roles light up down the trace when the company card comes into view */
+  .js .role::after { transform: scaleY(0); transform-origin: 50% 0; transition: transform .7s ease .5s; }
+  .js .company.in .role::after { transform: scaleY(1); }
+  .js .role-points li { opacity: 0; transform: translateX(-14px); transition: opacity .45s ease, transform .5s ease; }
+  .js .company.in .role-points li { opacity: 1; transform: none; }
+  .js .company.in .role:first-child .role-points li:nth-child(1) { transition-delay: .35s; }
+  .js .company.in .role:first-child .role-points li:nth-child(2) { transition-delay: .45s; }
+  .js .company.in .role:first-child .role-points li:nth-child(3) { transition-delay: .55s; }
+  .js .company.in .role:first-child .role-points li:nth-child(4) { transition-delay: .65s; }
+  .js .company.in .role:last-child .role-points li { transition-delay: 1s; }
+  .js .highlight { opacity: 0; transform: scale(.96); transition: opacity .5s ease .25s, transform .5s cubic-bezier(.2,1.4,.4,1) .25s; }
+  .js .company.in .highlight { opacity: 1; transform: none; }
+}
+.hero-cv h1 { font-size: clamp(2.4rem, 5vw, 4.4rem); }
+.contact-list { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.contact-list a { word-break: normal; overflow-wrap: anywhere; }
+.contact-list { max-width: 1240px; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
+@media (max-width: 560px) { .highlight { flex-direction: column; align-items: flex-start; gap: 8px; } }
+
+/* form controls: same height, custom arrow so the dropdown matches the text fields */
+.field input, .field select { height: 3.25rem; }
+.field select {
+  -webkit-appearance: none; appearance: none;
+  padding-right: 44px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2322F0C0' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 16px center; background-size: 12px 8px;
+  cursor: pointer;
+}
+.field select option { background: #0E1729; color: #E6EDF7; }
