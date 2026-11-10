@@ -752,3 +752,15 @@ body { overflow-x: clip; }
   cursor: pointer;
 }
 .field select option { background: #0E1729; color: #E6EDF7; }
+
+/* second experience card: independent work */
+.company-side { margin-top: 28px; border-color: rgba(155, 140, 255, .4); box-shadow: 0 0 50px -20px rgba(155, 140, 255, .5); }
+.company-side .role::before { border-color: var(--violet); box-shadow: 0 0 10px rgba(155, 140, 255, .7); }
+.company-side .role:first-child::before { background: var(--violet); border-color: var(--violet); box-shadow: 0 0 16px rgba(155, 140, 255, .9); }
+.company-side .role::after { background: var(--violet); box-shadow: 0 0 8px rgba(155, 140, 255, .8); }
+.company-side .role-date { color: var(--violet); text-shadow: 0 0 12px rgba(155, 140, 255, .35); }
+.company-side .role-points li::before { background: var(--violet); box-shadow: 0 0 6px var(--violet); }
+.inline-link { color: var(--mask); font-weight: 600; text-underline-offset: 3px; white-space: nowrap; }
+@media (prefers-reduced-motion: no-preference) {
+  .js .company.in .role:nth-child(2):not(:last-child) .role-points li { transition-delay: .7s; }
+}
