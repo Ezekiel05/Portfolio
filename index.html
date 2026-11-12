@@ -3,17 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0A1120">
+  <meta name="theme-color" content="#0A1120" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#EAF0F6" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="dark light">
   <title>Edrian Barandino — Software Developer, .NET and Web API Specialist</title>
   <meta name="description" content="Edrian Barandino is a software developer with 6+ years of experience in .NET Core, Web API development and full-stack web applications, based in Cavite, Philippines.">
   <meta property="og:title" content="Edrian Barandino — Software Developer, .NET and Web API Specialist">
   <meta property="og:description" content="6+ years building and modernizing .NET systems, Web APIs and Vue.js front ends.">
   <meta property="og:type" content="website">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231B2A4A'/%3E%3Ccircle cx='9' cy='16' r='3' fill='%23F2C230'/%3E%3Ccircle cx='23' cy='16' r='3' fill='%23F2C230'/%3E%3Cpath d='M12 16h8' stroke='%23F2C230' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cstyle%3E.p%7Bstroke:%2322F0C0%7D.c%7Bfill:%230A1120;stroke:%2322F0C0%7D.t%7Bfill:%23E6EDF7%7D@media (prefers-color-scheme:light)%7B.p%7Bstroke:%231F6FEB%7D.c%7Bfill:%23fff;stroke:%231F6FEB%7D.t%7Bfill:%230F2547%7D%7D%3C/style%3E%3Cpath class='p' stroke-width='2.4' stroke-linecap='round' d='M13 3v5M20 3v5M27 3v5M13 32v5M20 32v5M27 32v5M3 13h5M3 20h5M3 27h5M32 13h5M32 20h5M32 27h5'/%3E%3Crect class='c' x='8' y='8' width='24' height='24' rx='5' stroke-width='2.4'/%3E%3Ctext class='t' x='20' y='24.5' text-anchor='middle' font-family='Arial,Helvetica,sans-serif' font-weight='800' font-size='12'%3EEB%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-light.css" media="(prefers-color-scheme: light)" id="light-css">
+  <script>
+    // Apply a saved theme choice before the page paints, so there's no flash of the wrong theme
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem("theme"); } catch (e) {}
+      var css = document.getElementById("light-css");
+      if (saved === "light") css.media = "all";
+      else if (saved === "dark") css.media = "not all";
+    })();
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -21,11 +34,24 @@
   <header class="top">
     <span class="progress" aria-hidden="true"></span>
     <a class="mark" href="#top" aria-label="Edrian Barandino, home">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="8" cy="16" r="4"/><circle cx="24" cy="16" r="4"/><path d="M12 16h8"/></svg>
+      <svg class="logo" viewBox="0 0 40 40" aria-hidden="true">
+        <g class="logo-pins"><path d="M13 3v5M20 3v5M27 3v5M13 32v5M20 32v5M27 32v5M3 13h5M3 20h5M3 27h5M32 13h5M32 20h5M32 27h5"/></g>
+        <rect class="logo-chip" x="8" y="8" width="24" height="24" rx="5"/>
+        <text class="logo-text" x="20" y="24.5" text-anchor="middle">EB</text>
+      </svg>
       <span>Edrian Barandino</span>
     </a>
-    <nav aria-label="Main">
+    <button class="theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch theme">
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>
+    </button>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav aria-label="Main" id="main-nav">
+      <a href="#work">Work</a>
       <a href="#experience">Experience</a>
+      <a href="#help">For businesses</a>
       <a href="#skills">Skills</a>
       <a href="#education">Education</a>
       <a class="nav-cta" href="#contact">Get in touch</a>
@@ -36,12 +62,19 @@
     <!-- HERO -->
     <section class="hero hero-cv" id="top" data-reveal="hero">
       <div class="hero-copy">
+        <p class="availability"><span class="avail-dot" aria-hidden="true"></span>Open to full-time roles and freelance projects</p>
         <p class="hero-role">Software Developer, .NET and Web API Specialist</p>
         <h1>I build and modernize the systems businesses run on.</h1>
         <p class="lede">I'm Edrian Barandino, a software developer with 6+ years of experience in .NET Core, Web API development and full-stack web applications. I build scalable internal systems, optimize backend services and improve application performance.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">Get in touch</a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/edrian-barandino-57a531215">View my LinkedIn</a>
+        <div class="paths" role="group" aria-label="Choose what brings you here">
+          <a class="path" href="#work" data-topic="A job opportunity">
+            <span class="path-k">Hiring for a .NET role?</span>
+            <span class="path-v">See my work and experience</span>
+          </a>
+          <a class="path path-alt" href="#help" data-topic="A freelance project">
+            <span class="path-k">Need something built?</span>
+            <span class="path-v">See how I can help your business</span>
+          </a>
         </div>
       </div>
 
@@ -114,6 +147,61 @@
           <circle class="led" cx="520" cy="180" r="7"/>
         </svg>
       </figure>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section class="work-cs" id="work" aria-labelledby="work-h">
+      <div class="section-head" data-reveal="head">
+        <h2 id="work-h">Selected work</h2>
+        <p>A closer look at three projects from my time at InTouchCX: what needed fixing, what I built, and what changed.</p>
+      </div>
+
+      <div class="cs-list">
+        <article class="cs" data-reveal="up">
+          <div class="cs-text">
+            <p class="cs-tag">Backend, .NET 5</p>
+            <h3>An encryption service that took the load off our servers</h3>
+            <dl class="cs-facts">
+              <div><dt>The problem</dt><dd>Encryption work was adding load to the servers running our internal applications.</dd></div>
+              <div><dt>What I did</dt><dd>Designed and built a dedicated internal Encryption Web API in .NET 5, so applications hand that work to one focused service.</dd></div>
+              <div><dt>The result</dt><dd><strong class="cs-win">30% less server workload</strong> and more efficient processing.</dd></div>
+            </dl>
+          </div>
+          <div class="cs-flow" role="img" aria-label="Internal applications send encryption work to a dedicated .NET 5 Encryption Web API, reducing server workload by 30 percent"><span class="cs-box " aria-hidden="true"><span class="cs-main">Internal apps</span></span><span class="cs-link" aria-hidden="true"></span><span class="cs-box hot" aria-hidden="true"><span class="cs-main">Encryption API</span><span class="cs-sub">.NET 5</span></span><span class="cs-link" aria-hidden="true"></span><span class="cs-box out" aria-hidden="true"><span class="cs-main">Lighter servers</span><span class="cs-sub">30% less load</span></span></div>
+        </article>
+
+        <article class="cs" data-reveal="up">
+          <div class="cs-text">
+            <p class="cs-tag">Modernization, ASP.NET and Vue.js</p>
+            <h3>Moving legacy systems onto a modern stack</h3>
+            <dl class="cs-facts">
+              <div><dt>The problem</dt><dd>Core pages and applications still ran on Classic ASP and older MVC views, which made them harder to maintain and improve.</dd></div>
+              <div><dt>What I did</dt><dd>Migrated legacy applications from Classic ASP to ASP.NET, then led the move of MVC pages to a Vue.js front end.</dd></div>
+              <div><dt>The result</dt><dd><strong class="cs-win">Easier to maintain</strong>, with a better user experience, improved UI design and more functionality.</dd></div>
+            </dl>
+          </div>
+          <div class="cs-flow" role="img" aria-label="Legacy Classic ASP pages migrated to ASP.NET, then MVC pages moved to a Vue.js front end"><span class="cs-box " aria-hidden="true"><span class="cs-main">Classic ASP</span><span class="cs-sub">legacy pages</span></span><span class="cs-link" aria-hidden="true"></span><span class="cs-box hot" aria-hidden="true"><span class="cs-main">ASP.NET</span><span class="cs-sub">.NET backend</span></span><span class="cs-link" aria-hidden="true"></span><span class="cs-box out" aria-hidden="true"><span class="cs-main">Vue.js</span><span class="cs-sub">modern front end</span></span></div>
+        </article>
+
+        <article class="cs" data-reveal="up">
+          <div class="cs-text">
+            <p class="cs-tag">Automation, IVR</p>
+            <h3>Routing customer calls automatically</h3>
+            <dl class="cs-facts">
+              <div><dt>The problem</dt><dd>Customer calls needed to reach the right people with less manual handling.</dd></div>
+              <div><dt>What I did</dt><dd>Developed and deployed an IVR system for customer call routing and automation.</dd></div>
+              <div><dt>The result</dt><dd><strong class="cs-win">Automated call routing</strong> that sends callers where they need to go.</dd></div>
+            </dl>
+          </div>
+          <div class="cs-flow" role="img" aria-label="Customer calls go through the IVR system, which routes them to the right team"><span class="cs-box " aria-hidden="true"><span class="cs-main">Customer call</span></span><span class="cs-link" aria-hidden="true"></span><span class="cs-box hot" aria-hidden="true"><span class="cs-main">IVR system</span><span class="cs-sub">routing rules</span></span><span class="cs-link" aria-hidden="true"></span><span class="cs-box out" aria-hidden="true"><span class="cs-main">Right team</span><span class="cs-sub">faster help</span></span></div>
+        </article>
+      </div>
+
+      <div class="cs-cta" data-reveal="up">
+        <p>Have a system that needs this kind of work?</p>
+        <a class="btn btn-primary" href="#contact" data-topic="A freelance project">Talk to me about it</a>
+        <a class="btn btn-ghost" href="#contact" data-topic="A job opportunity">Discuss a role</a>
+      </div>
     </section>
 
     <!-- EXPERIENCE -->
@@ -202,6 +290,36 @@
             </ul>
           </li>
         </ol>
+      </div>
+    </section>
+
+    <!-- FOR BUSINESSES -->
+    <section class="help" id="help" aria-labelledby="help-h">
+      <div class="section-head" data-reveal="head">
+        <h2 id="help-h">How I can help your business</h2>
+        <p>The same work I do every day, available for your project. Tell me what's slowing you down and I'll suggest the simplest fix.</p>
+      </div>
+      <ul class="help-grid">
+        <li class="help-card" data-reveal="up">
+          <h3>Modernize a legacy app</h3>
+          <p>Move an aging Classic ASP or older ASP.NET system to modern .NET and a Vue.js front end, without losing what already works.</p>
+        </li>
+        <li class="help-card" data-reveal="up">
+          <h3>Build or fix a Web API</h3>
+          <p>Design a new API, connect your systems, or speed up a slow backend service.</p>
+        </li>
+        <li class="help-card" data-reveal="up">
+          <h3>Custom web applications</h3>
+          <p>Internal tools, ticketing, attendance and tracking systems built around how your team works.</p>
+        </li>
+        <li class="help-card" data-reveal="up">
+          <h3>WordPress sites and migrations</h3>
+          <p>Move an existing site to WordPress, such as from Joomla, with your pages and content carried over.</p>
+        </li>
+      </ul>
+      <div class="cs-cta" data-reveal="up">
+        <p>Not sure which one fits? Describe the problem and I'll point you in the right direction.</p>
+        <a class="btn btn-primary" href="#contact" data-topic="A freelance project">Start a project</a>
       </div>
     </section>
 

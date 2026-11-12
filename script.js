@@ -74,6 +74,57 @@ document.querySelectorAll(".svc[id]").forEach((row) => {
   row.addEventListener("mouseleave", () => chip.classList.remove("is-lit"));
 });
 
+// ---- "Hiring?" / "Need something built?" paths: remember the choice in the contact form
+document.querySelectorAll("[data-topic]").forEach((link) => {
+  link.addEventListener("click", () => {
+    const select = document.getElementById("f-type");
+    if (select) select.value = link.dataset.topic;
+  });
+});
+
+// ---- Light / dark theme toggle (follows the system until the visitor picks one)
+const lightCss = document.getElementById("light-css");
+const themeBtn = document.querySelector(".theme-toggle");
+const systemLight = window.matchMedia("(prefers-color-scheme: light)");
+function savedTheme() { try { return localStorage.getItem("theme"); } catch (e) { return null; } }
+function applyTheme(choice) {
+  const theme = choice || (systemLight.matches ? "light" : "dark");
+  if (lightCss) lightCss.media = choice ? (choice === "light" ? "all" : "not all") : "(prefers-color-scheme: light)";
+  document.documentElement.dataset.theme = theme;
+  document.querySelectorAll('meta[name="theme-color"]').forEach((m) => {
+    m.media = choice ? "all" : m.dataset.media || m.media;
+    if (choice) m.content = theme === "light" ? "#EAF0F6" : "#0A1120";
+  });
+  if (themeBtn) {
+    const next = theme === "light" ? "dark" : "light";
+    themeBtn.setAttribute("aria-label", `Switch to ${next} theme`);
+  }
+}
+document.querySelectorAll('meta[name="theme-color"]').forEach((m) => { m.dataset.media = m.media; m.dataset.content = m.content; });
+applyTheme(savedTheme());
+systemLight.addEventListener("change", () => { if (!savedTheme()) applyTheme(null); });
+if (themeBtn) {
+  themeBtn.addEventListener("click", () => {
+    const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    try { localStorage.setItem("theme", next); } catch (e) {}
+    applyTheme(next);
+  });
+}
+
+// ---- Mobile menu
+const menuBtn = document.querySelector(".menu-toggle");
+const nav = document.getElementById("main-nav");
+if (menuBtn && nav) {
+  const setOpen = (open) => {
+    menuBtn.setAttribute("aria-expanded", String(open));
+    menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    document.body.classList.toggle("menu-open", open);
+  };
+  menuBtn.addEventListener("click", () => setOpen(menuBtn.getAttribute("aria-expanded") !== "true"));
+  nav.addEventListener("click", (e) => { if (e.target.closest("a")) setOpen(false); });
+  addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
+}
+
 // ---- Contact form: no server needed on GitHub Pages, so it opens a pre-filled email.
 const EMAIL = "edrianbarandino@gmail.com";
 const form = document.getElementById("contact-form");
