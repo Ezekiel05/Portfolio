@@ -969,3 +969,6 @@ body { overflow-x: clip; }
 .chat-panel { box-shadow: 0 24px 60px -24px rgba(15, 37, 71, .45); }
 .chat-panel { box-shadow: 0 0 0 4px rgba(31, 111, 235, .12), 0 30px 70px -24px rgba(15, 37, 71, .55); }
 .chat-log { background-image: radial-gradient(rgba(31, 111, 235, .14) 1px, transparent 1px); }
+.hero::before { content: none; }
+.fit-proof strong { color: #A85F00; }
+.fit-proof a, .text-link { color: #1A5FD0; }

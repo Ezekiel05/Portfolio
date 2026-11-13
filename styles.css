@@ -1093,3 +1093,36 @@ body { overflow-x: clip; }
 @media (max-width: 600px) {
   .chat.is-open::before { content: ""; position: fixed; inset: 0; z-index: -1; background: rgba(3, 8, 18, .55); backdrop-filter: blur(2px); }
 }
+
+/* =========================================================
+   De-AI pass: no gradient blob, one primary action, rows over cards
+   ========================================================= */
+.hero::before { content: none; }
+.hero h1 { text-shadow: none; }
+
+.text-link { color: var(--mask); font-weight: 600; text-decoration: none; padding: 6px 2px; }
+.text-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+.fit { border-top: 1px solid var(--line); }
+.fit-row {
+  display: grid; grid-template-columns: 1fr 1.15fr 1.1fr; gap: 28px; align-items: baseline;
+  padding: 22px 0; border-bottom: 1px solid var(--line);
+}
+.fit-headrow { padding: 12px 0; font-size: .9rem; font-weight: 600; color: var(--ink-soft); }
+.fit-have { font-weight: 700; font-size: 1.12rem; color: var(--ink); }
+.fit-do { color: color-mix(in srgb, var(--ink) 85%, transparent); }
+.fit-proof a { color: var(--mask); text-decoration: none; font-weight: 500; }
+.fit-proof a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.fit-proof strong { color: var(--led); }
+@media (max-width: 860px) {
+  .fit-headrow { display: none; }
+  .fit-row { grid-template-columns: 1fr; gap: 6px; }
+  .fit-do::before { content: "I'll: "; font-weight: 600; color: var(--ink-soft); }
+  .fit-proof::before { content: "Done before: "; font-weight: 600; color: var(--ink-soft); }
+}
+
+/* keep the footer links clear of the floating chat button */
+body:has(.chat) .foot { padding-bottom: 104px; }
+@media (max-width: 600px) { body:has(.chat) .foot { padding-bottom: 92px; } }
+.foot p:last-child { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.foot a { margin-left: 0; }

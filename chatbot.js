@@ -67,7 +67,7 @@
     {
       id: "services",
       keys: ["service", "services", "build", "freelance", "project", "hire you", "help my business", "business", "website", "web app", "application", "app", "system", "api", "offer", "can you do", "can he do"],
-      reply: "Edrian can help your business with:<ul><li>Modernizing a legacy ASP or .NET app</li><li>Building or fixing a Web API</li><li>Custom web applications, such as internal tools, ticketing, attendance and tracking systems</li><li>WordPress sites and migrations</li></ul>Describe your project and he'll suggest the simplest fix.",
+      reply: "Edrian's specialty is moving legacy Classic ASP and ASP.NET apps onto modern .NET and Vue.js. He also:<ul><li>Builds Web APIs that take load off slow backends (one cut server workload by 30%)</li><li>Builds web apps to replace paper or spreadsheet processes</li><li>Migrates Joomla sites to WordPress</li></ul>Describe your project and he'll suggest the simplest fix.",
       chips: ["Start a project", "How much does it cost?", "What's his tech stack?"],
       go: "#help",
       topic: "A freelance project",
